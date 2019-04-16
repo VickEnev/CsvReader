@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CsvToSqlParser
 {
-    internal class RelationshipKey : IEqualityComparer<RelationshipKey>
+    internal class RelationshipKey //: IEqualityComparer<RelationshipKey>
     {
         public readonly string ColumnValue;
         public readonly int TableColumnIndex;
@@ -17,14 +17,26 @@ namespace CsvToSqlParser
             TableColumnIndex = tableColumnIndex;
         }
 
-        public bool Equals(RelationshipKey x, RelationshipKey y)
+        public override bool Equals(object obj)
         {
-            return x.ColumnValue == y.ColumnValue && x.TableColumnIndex == y.TableColumnIndex;
+            var _obj = obj as RelationshipKey;
+            return _obj.ColumnValue == this.ColumnValue && _obj.TableColumnIndex == this.TableColumnIndex;
         }
 
-        public int GetHashCode(RelationshipKey obj)
+        public override int GetHashCode()
         {
-            return obj.ColumnValue.GetHashCode() + obj.TableColumnIndex.GetHashCode();
+            return ColumnValue.GetHashCode() + TableColumnIndex.GetHashCode();
         }
+
+        //public override bool Equals(RelationshipKey x, RelationshipKey y)
+        //{
+        //    return x.ColumnValue == y.ColumnValue && x.TableColumnIndex == y.TableColumnIndex;
+        //}
+
+        //public override int GetHashCode()
+        //{
+        //    //return obj.ColumnValue.GetHashCode() + obj.TableColumnIndex.GetHashCode();
+
+        //}
     }
 }

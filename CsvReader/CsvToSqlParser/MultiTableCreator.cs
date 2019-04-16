@@ -192,7 +192,6 @@ namespace CsvToSqlParser
 
                                 if (relationshipsResult != null)
                                 {
-                                    var relationshipWorkers = new List<Task<List<string>>>();
 
                                     var cacheTask = Task.Factory.StartNew(() =>
                                     {
@@ -212,7 +211,7 @@ namespace CsvToSqlParser
                                 if (worker != null)
                                     worker.Wait();
 
-                                PushNotification("Saving...");
+                               
 
                                 worker = new Task(() =>
                                 {
@@ -224,7 +223,7 @@ namespace CsvToSqlParser
                                              idSaver,
                                              database,
                                              columns,
-                                             chunkSize);
+                                             (int)Math.Floor((double)chunkSize / columns.Length));
                                 });
 
 
@@ -246,7 +245,7 @@ namespace CsvToSqlParser
                                 worker.Wait();
 
                             database.ExecuteMultipleNonQueriesInATranscaction(queries);
-                            MakeSQlTable_MultipleTables(data, tables.Last(), idSaver, database, columns, chunkSize);
+                            MakeSQlTable_MultipleTables(data, tables.Last(), idSaver, database, columns, (int)Math.Floor((double)chunkSize / columns.Length));
                         }
                         else if (worker != null && !worker.IsCompleted)
                             worker.Wait();
@@ -278,25 +277,30 @@ namespace CsvToSqlParser
 
                     for (var i = 0; i < relationshipList.Count; i++)
                     {
-                        if (!idSaver.ContainsKey(
-                            new RelationshipKey(relationshipList[i].ColumnIndex, relationshipList[i].Value)))
+                        IData row = relationshipList[i];
+                        RelationshipKey key = new RelationshipKey(row.ColumnIndex, row.Value);
+
+                        if (!idSaver.ContainsKey(key))
                         {
                             var rowData = new Data()
                             {
-                                ColumnIndex = relationshipList[i].ColumnIndex,
-                                Value = relationshipList[i].Value
+                                ColumnIndex = row.ColumnIndex,
+                                Value = row.Value
                             };
 
                             _queries.Add(Database
                                 .InsertDataInSecondaryTables(new List<IData>() { rowData },
                                          rel.Value, rel.Value.Columns.ToList(), columns, tempId));
 
-                            idSaver.TryAdd(new RelationshipKey(relationshipList[i].ColumnIndex, relationshipList[i].Value), tempId);
+                            idSaver.TryAdd(key, tempId);
+
                             lock (IdLocker)
-                            {
+                            {                              
                                 tempId++;
                             }
                         }
+                            
+
                     }
 
                     return _queries;
@@ -319,7 +323,7 @@ namespace CsvToSqlParser
 
 
 
-        private void MakeSQlTable_MultipleTables(List<IData> data, ITable mainTable, 
+        private void MakeSQlTable_MultipleTables(List<IData> data, ITable mainTable,
             ConcurrentDictionary<RelationshipKey, int> ids, Database database, IColumn[] columns, int chunkSize)
         {
 
@@ -345,7 +349,7 @@ namespace CsvToSqlParser
                     {
                         row.Add(data[i]);
                     }
-                       
+
 
                     i++;
 
@@ -357,11 +361,11 @@ namespace CsvToSqlParser
                     {
                         queries.Add(database.InsertDataIntoMainTable(row, mainTable, columns, _columns, _values));
                     }
-                    else
+                    else // doesnt go into this else  - chunksize problem
                     {
+                        PushNotification("Saving...");
                         database.ExecuteMultipleNonQueriesInATranscaction(queries);
                         queries = new List<string>(chunkSize);
-
                     }
                     row = new List<IData>(mainTable.Columns.Count);
                 }

@@ -1,0 +1,14 @@
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\bin\Debug\ConsoleCsvReader.exe.config
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\bin\Debug\ConsoleCsvReader.exe
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\bin\Debug\ConsoleCsvReader.pdb
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\bin\Debug\CsvToSqlParser.dll
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\bin\Debug\SQLLITEDatabaseLib.dll
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\bin\Debug\System.Data.SQLite.dll
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\bin\Debug\CsvToSqlParser.pdb
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\bin\Debug\SQLLITEDatabaseLib.pdb
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\bin\Debug\System.Data.SQLite.xml
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\obj\Debug\ConsoleCsvReader.csprojAssemblyReference.cache
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\obj\Debug\ConsoleCsvReader.csproj.CoreCompileInputs.cache
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\obj\Debug\ConsoleCsvReader.csproj.CopyComplete
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\obj\Debug\ConsoleCsvReader.exe
+D:\GitHub\CsvReader\CsvReader\ConsoleCsvReader\obj\Debug\ConsoleCsvReader.pdb

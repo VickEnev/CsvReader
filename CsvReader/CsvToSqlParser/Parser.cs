@@ -71,12 +71,19 @@ namespace CsvToSqlParser
 
                 int lineCount = StaticHelperClass.GetCsvLineCount(FileName);
 
-                ChunkSize = (lineCount >= 500000) ?
-                    ChunkSize = 65536 :
-                    (lineCount <= 20000 && lineCount > 5000) ? ChunkSize = (lineCount / 4) :
+
+                if (lineCount >= 131072)
+                    ChunkSize = 65536;
+                else if (lineCount < 131072 && lineCount >= 50000)
+                    ChunkSize = 16384;
+                else if (lineCount < 50000 && lineCount >= 10000)
+                    ChunkSize = lineCount / 4;
+                else
                     ChunkSize = lineCount;
 
-                PushNotification($"Validating and writing {lineCount} entries to database!");
+              
+
+                PushNotification($"Validating and writing {lineCount} entries to database!\nChunk size is {ChunkSize}.");
 
                 if (Configuration.Type == RelationshipType.NoRelationship)
                 {

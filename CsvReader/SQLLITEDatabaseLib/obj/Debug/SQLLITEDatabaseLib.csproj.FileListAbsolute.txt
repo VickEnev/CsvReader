@@ -1,0 +1,9 @@
+D:\GitHub\CsvReader\CsvReader\SQLLITEDatabaseLib\bin\Debug\SQLLITEDatabaseLib.dll
+D:\GitHub\CsvReader\CsvReader\SQLLITEDatabaseLib\bin\Debug\SQLLITEDatabaseLib.pdb
+D:\GitHub\CsvReader\CsvReader\SQLLITEDatabaseLib\bin\Debug\System.Data.SQLite.dll
+D:\GitHub\CsvReader\CsvReader\SQLLITEDatabaseLib\bin\Debug\System.Data.SQLite.xml
+D:\GitHub\CsvReader\CsvReader\SQLLITEDatabaseLib\obj\Debug\SQLLITEDatabaseLib.csprojAssemblyReference.cache
+D:\GitHub\CsvReader\CsvReader\SQLLITEDatabaseLib\obj\Debug\SQLLITEDatabaseLib.csproj.CoreCompileInputs.cache
+D:\GitHub\CsvReader\CsvReader\SQLLITEDatabaseLib\obj\Debug\SQLLITEDatabaseLib.csproj.CopyComplete
+D:\GitHub\CsvReader\CsvReader\SQLLITEDatabaseLib\obj\Debug\SQLLITEDatabaseLib.dll
+D:\GitHub\CsvReader\CsvReader\SQLLITEDatabaseLib\obj\Debug\SQLLITEDatabaseLib.pdb

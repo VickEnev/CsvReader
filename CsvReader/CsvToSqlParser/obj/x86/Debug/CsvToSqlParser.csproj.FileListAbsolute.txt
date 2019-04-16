@@ -1,0 +1,11 @@
+D:\GitHub\CsvReader\CsvReader\CsvToSqlParser\bin\x86\Debug\CsvToSqlParser.dll
+D:\GitHub\CsvReader\CsvReader\CsvToSqlParser\bin\x86\Debug\CsvToSqlParser.pdb
+D:\GitHub\CsvReader\CsvReader\CsvToSqlParser\bin\x86\Debug\SQLLITEDatabaseLib.dll
+D:\GitHub\CsvReader\CsvReader\CsvToSqlParser\bin\x86\Debug\System.Data.SQLite.dll
+D:\GitHub\CsvReader\CsvReader\CsvToSqlParser\bin\x86\Debug\SQLLITEDatabaseLib.pdb
+D:\GitHub\CsvReader\CsvReader\CsvToSqlParser\bin\x86\Debug\System.Data.SQLite.xml
+D:\GitHub\CsvReader\CsvReader\CsvToSqlParser\obj\x86\Debug\CsvToSqlParser.csprojAssemblyReference.cache
+D:\GitHub\CsvReader\CsvReader\CsvToSqlParser\obj\x86\Debug\CsvToSqlParser.csproj.CoreCompileInputs.cache
+D:\GitHub\CsvReader\CsvReader\CsvToSqlParser\obj\x86\Debug\CsvToSqlParser.csproj.CopyComplete
+D:\GitHub\CsvReader\CsvReader\CsvToSqlParser\obj\x86\Debug\CsvToSqlParser.dll
+D:\GitHub\CsvReader\CsvReader\CsvToSqlParser\obj\x86\Debug\CsvToSqlParser.pdb
