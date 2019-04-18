@@ -20,9 +20,10 @@ namespace CsvToSqlParser
     {
         public Configuration Configuration { get; set; }
         public string FileName { get; set; }
-       
+        private int LineCount { get; set; }
+        private int ChunkSize { get; set; }
         private IObserver<INotification> Observer { get; set; }
-       
+
 
         public Parser(string fileName, Configuration configuration)
         {
@@ -32,7 +33,7 @@ namespace CsvToSqlParser
 
         public void ParseFile()
         {
-            int ChunkSize = 0;
+
             IColumn[] columns;
             try
             {
@@ -69,21 +70,29 @@ namespace CsvToSqlParser
                 else
                     columns = Configuration.Columns.ToArray();
 
-                int lineCount = StaticHelperClass.GetCsvLineCount(FileName);
+                LineCount = StaticHelperClass.GetCsvLineCount(FileName);
 
 
-                if (lineCount >= 131072)
-                    ChunkSize = 65536;
-                else if (lineCount < 131072 && lineCount >= 50000)
+
+
+                if (LineCount >= 131072)
+                {
+                    int multiplier = LineCount / 131072;
+                    if (multiplier > 1)
+                        ChunkSize = 65536 * multiplier;
+                    else
+                        ChunkSize = 65536;
+                }
+                else if (LineCount < 131072 && LineCount >= 50000)
                     ChunkSize = 16384;
-                else if (lineCount < 50000 && lineCount >= 10000)
-                    ChunkSize = lineCount / 4;
+                else if (LineCount < 50000 && LineCount >= 10000)
+                    ChunkSize = LineCount / 4;
                 else
-                    ChunkSize = lineCount;
+                    ChunkSize = LineCount;
 
-              
 
-                PushNotification($"Validating and writing {lineCount} entries to database!\nChunk size is {ChunkSize}.");
+
+                PushNotification($"Validating and writing {LineCount} entries to database!\nChunk size is {ChunkSize}.");
 
                 if (Configuration.Type == RelationshipType.NoRelationship)
                 {
@@ -110,8 +119,8 @@ namespace CsvToSqlParser
 
         public void PushNotification(INotification value, bool isComplete = false)
         {
-            if(!isComplete)
-                Observer.OnNext(value);
+            if (!isComplete)
+                PushNotification($"Validating and writing {LineCount} entries to database!\nChunk size is {ChunkSize}.\n-->{value.Notification}");
             else
                 Observer.OnCompleted();
         }

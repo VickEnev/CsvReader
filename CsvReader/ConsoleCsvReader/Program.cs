@@ -29,6 +29,7 @@ namespace ConsoleCsvReader
         public void OnCompleted()
         {
             Console.WriteLine($"Operation finished in {Stopwatch.Elapsed}");
+            System.Diagnostics.Debug.WriteLine($"Operation finished in {Stopwatch.Elapsed}");
         }
 
         public void OnError(Exception error)
@@ -38,6 +39,7 @@ namespace ConsoleCsvReader
 
         public void OnNext(INotification value)
         {
+            Console.Clear();
             Console.WriteLine(value.Notification + $" > {Stopwatch.Elapsed}");
         }
 
